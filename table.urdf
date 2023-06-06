@@ -1,0 +1,215 @@
+<?xml version="1.0" ?>
+<robot name="table.urdf">
+    <link name="top">
+        <contact>
+        <lateral_friction value="1.0"/>
+        </contact>
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="20.0"/>
+        <inertia ixx=".005833" ixy="0" ixz="0" iyy=".005833" iyz="0" izz=".005"/>
+        </inertial>
+        <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <box size=".60 1.0 .1"/>
+        </geometry>
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        </visual>
+        <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <box size=".60 1.0 .1"/>
+        </geometry>
+        </collision>
+    </link>
+
+
+    <link name="lf_leg">
+        <contact>
+        <lateral_friction value="1.0"/>
+        </contact>
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <mass value="1.0"/>
+        <inertia ixx=".005833" ixy="0" ixz="0" iyy=".005833" iyz="0" izz=".005"/>
+        </inertial>
+        <visual>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        </visual>
+        <collision>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        </collision>
+    </link>
+
+    <link name="lf_hip">
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <mass value=".0000001"/>
+        <inertia ixx=".0000001" ixy="0" ixz="0" iyy=".0000001" iyz="0" izz=".0000001"/>
+        </inertial>
+    </link>
+
+    <link name="lf_leg_extension">
+        <contact>
+        <lateral_friction value="1.0"/>
+        </contact>
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <mass value="1.0"/>
+        <inertia ixx=".005833" ixy="0" ixz="0" iyy=".005833" iyz="0" izz=".005"/>
+        </inertial>
+        <visual>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        </visual>
+        <collision>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        </collision>
+    </link>
+
+
+<joint name="lf_hip_joint" type="revolute">
+  <parent link="top"/>
+  <child link="lf_hip"/>
+  <origin xyz="-.325 .525 -.05" rpy="0 0 0"/>
+  <axis xyz="1 1 0"/>
+  <limit lower="-2.2" upper="2.2" />
+</joint>
+
+
+
+<joint name="lf_joint" type="revolute">
+  <parent link="lf_hip"/>
+  <child link="lf_leg"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <axis xyz="-1 1 0"/>
+  <limit lower="-2.2" upper="2.2" />
+</joint>
+
+<joint name="lf_extension" type="prismatic">
+  <parent link="lf_leg"/>
+  <child link="lf_leg_extension"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <axis xyz="0 0 -1"/>
+  <limit lower="0" upper=".5" />
+</joint>
+
+<link name="rb_leg">
+        <contact>
+        <lateral_friction value="1.0"/>
+        </contact>
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <mass value="1.0"/>
+        <inertia ixx=".005833" ixy="0" ixz="0" iyy=".005833" iyz="0" izz=".005"/>
+        </inertial>
+        <visual>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        </visual>
+        <collision>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        </collision>
+    </link>
+
+    <link name="rb_leg_extension">
+        <contact>
+        <lateral_friction value="1.0"/>
+        </contact>
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <mass value="1.0"/>
+        <inertia ixx=".005833" ixy="0" ixz="0" iyy=".005833" iyz="0" izz=".005"/>
+        </inertial>
+        <visual>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        </visual>
+        <collision>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        </collision>
+    </link>
+
+
+    <link name="rb_hip">
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <mass value=".0000001"/>
+        <inertia ixx=".0000001" ixy="0" ixz="0" iyy=".0000001" iyz="0" izz=".0000001"/>
+        </inertial>
+    </link>
+
+
+<joint name="rb_hip_joint" type="revolute">
+  <parent link="top"/>
+  <child link="rb_hip"/>
+  <origin xyz=".325 -.525 -.05" rpy="0 0 0"/>
+  <axis xyz="1 1 0"/>
+  <limit lower="-2.2" upper="2.2" />
+</joint>
+
+
+
+<joint name="rb_joint" type="revolute">
+  <parent link="rb_hip"/>
+  <child link="rb_leg"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <axis xyz="-1 1 0"/>
+  <limit lower="-2.2" upper="2.2" />
+</joint>
+
+<joint name="rb_extension" type="prismatic">
+  <parent link="rb_leg"/>
+  <child link="rb_leg_extension"/>
+  <origin xyz="0 0 0" rpy="0 0 0"/>
+  <axis xyz="0 0 -1"/>
+  <limit lower="0" upper=".5" />
+</joint>
+
+
+
+
+
+
+
+
+
+
+
+</robot>
