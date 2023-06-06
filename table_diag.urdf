@@ -1,0 +1,105 @@
+<?xml version="1.0" ?>
+<robot name="table.urdf">
+    <link name="top">
+        <contact>
+        <lateral_friction value="1.0"/>
+        </contact>
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <mass value="100.0"/>
+        <inertia ixx="8.4167" ixy="0" ixz="0" iyy="2.1667" iyz="0" izz="10.417"/>
+        </inertial>
+        <visual>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <box size=".50 1.0 .1"/>
+        </geometry>
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        </visual>
+        <collision>
+        <origin rpy="0 0 0" xyz="0 0 0"/>
+        <geometry>
+            <box size=".50 1.0 .1"/>
+        </geometry>
+        </collision>
+    </link>
+
+
+    <link name="lf_leg">
+        <contact>
+        <lateral_friction value="1.0"/>
+        </contact>
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <mass value="1.0"/>
+        <inertia ixx=".021042" ixy="0" ixz="0" iyy=".021042" iyz="0" izz=".00041667"/>
+        </inertial>
+        <visual>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        </visual>
+        <collision>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        </collision>
+    </link>
+
+
+
+<joint name="lf_joint" type="revolute">
+  <parent link="top"/>
+  <child link="lf_leg"/>
+  <origin xyz="-.275 .525 0" rpy="0 0 0"/>
+  <axis xyz="-1 1 0"/>
+  <limit effort="1" lower="-2.2" upper="2.2" />
+  <dynamics damping="0.5" friction="0.5"/>
+</joint>
+
+
+<link name="rb_leg">
+        <contact>
+        <lateral_friction value="1.0"/>
+        </contact>
+        <inertial>
+        <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <mass value="1.0"/>
+        <inertia ixx=".021042" ixy="0" ixz="0" iyy=".021042" iyz="0" izz=".00041667"/>
+        </inertial>
+        <visual>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        <material name="white">
+            <color rgba="1 1 1 1"/>
+        </material>
+        </visual>
+        <collision>
+         <origin rpy="0 0 0" xyz="0 0 -.25"/>
+        <geometry>
+            <box size=".05 .05 .5"/>
+        </geometry>
+        </collision>
+    </link>
+
+
+<joint name="rb_joint" type="revolute">
+  <parent link="top"/>
+  <child link="rb_leg"/>
+  <origin xyz=".275 -.525 0" rpy="0 0 0"/>
+  <axis xyz="1 1 0"/>
+  <dynamics damping="0.5" friction="0.5"/>
+  <limit effort="1" lower="-2.2" upper="2.2" />
+</joint>
+
+
+</robot>

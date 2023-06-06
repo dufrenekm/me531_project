@@ -45,7 +45,7 @@ class LittleDog:
             self.get_joint_states()
 
 
-
+            # x = [qf(font angle) q1f(front angle velocity) qh qh1 qb qb1]
 
             #print(p.getJointState(self.bodyId, 0))
             p.stepSimulation()
