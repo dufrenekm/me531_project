@@ -31,7 +31,7 @@ class LittleDog:
         startOrientation = p.getQuaternionFromEuler([0,0,0])
 
 
-        rot = Rotation.from_euler('xyz', [0, 2, 0], degrees=True)
+        rot = Rotation.from_euler('xyz', [0, 5, 0], degrees=True)
 
         # Convert to quaternions and print
         rot_quat = rot.as_quat()
@@ -53,6 +53,7 @@ class LittleDog:
                                     [0]])
         gain = np.array([[556.2026, 101.3257, 41.7006, 32.6506, 0.7071, 2.4191],
                         [41.7006, 32.6506,556.2026,101.3257,.7071,.24191]])
+        gain = np.array([[723.2640,  139.2210,  208.5697,   69.8089,    7.0711,   12.8798],[208.5697,69.8089,723.2640,139.2210,7.0711,12.8798]])
 
         theta = 0
         print(p.getNumJoints(self.bodyId))

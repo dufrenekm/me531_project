@@ -31,12 +31,12 @@ class LittleDog:
         startOrientation = p.getQuaternionFromEuler([0,0,0])
 
 
-        rot = Rotation.from_euler('xyz', [0, .1, 0], degrees=False)
+        rot = Rotation.from_euler('xyz', [.2, .1, 0], degrees=False)
 
         # Convert to quaternions and print
         rot_quat = rot.as_quat()
 
-        self.bodyId = p.loadURDF("table_simple.urdf", [0,0,.5], rot_quat)
+        self.bodyId = p.loadURDF("table_simple.urdf", [0,0,.55], rot_quat)
         #set the center of mass frame (loadURDF sets base link frame) startPos/Ornp.resetBasePositionAndOrientation(boxId, startPos, startOrientation)
 
 
@@ -58,10 +58,6 @@ class LittleDog:
         gain = np.array([[100, 50, 100, 50, 100, 50], [100, 50, 100, 50, 100, 50]])
         gain = np.array([[592.701787108467, 109.504556339578, 78.2017676650497, 40.8295887145679, 2.23606797706993, 4.74054233998768],
 [78.2017677007310, 40.8295887214923, 592.701787120507, 109.504556343346, 2.23606797738994, 4.74054234059246]])
-        
-        gain = np.array([[ 540.8367,   97.8881,   26.3347,   29.2058,    0.2236,    1.4777],
-   [26.3347,   29.2058,  540.8367,   97.8881,    0.2236,    1.4777]])
-        
         theta = 0
         print(p.getNumJoints(self.bodyId))
 
@@ -72,8 +68,9 @@ class LittleDog:
 
         delta_x = np.array([[0],[0],[0],[0],[0],[0]])
         control = np.array([[0],[0]])
-        for i in range (50000): #WAS 3
-
+        input()
+        for i in range (30000):
+           
             p.stepSimulation()
             # Update our recorded joint states
             self.get_base_state()
@@ -107,12 +104,12 @@ class LittleDog:
             save_actuator_1.append(-control[0][0])
             save_actuator_2.append(-control[0][0])
             
-            if i==28000:
+            if i==10000:
                 print("FROCE")
-                #input()
+                input()
                 #Apply external force
-                #p.applyExternalForce(self.bodyId, 0, [-10000, 0, 0], [0,0,0], p.LINK_FRAME)
-
+                p.applyExternalForce(self.bodyId, 0, [-10000, 0, 10000], [0,0,0], p.LINK_FRAME)
+            time.sleep(.001)
             # x = [qf(font angle) q1f(front angle velocity) qh qh1 qb qb1]
 
             #print(p.getJointState(self.bodyId, 0))
@@ -145,7 +142,7 @@ class LittleDog:
         plt.plot(t, save_actuator_1)
         plt.plot(t, save_actuator_2)
         plt.legend(["Front","Rear"])
-        plt.suptitle(".1 Radian Pitch Disturbance")
+        plt.suptitle("Fall w/ Pitch and Roll Disturbance")
         plt.subplots_adjust(left=0.1,
                     bottom=0.1,
                     right=0.9,
